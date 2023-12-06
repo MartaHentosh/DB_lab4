@@ -15,8 +15,8 @@ class Request(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     request_type: str = db.Column(db.String(50))
 
-    employee_id = db.Column(db.Integer, db.ForeignKey('employee.employee_id'), nullable=False)
-    employee = db.relationship('Employee', backref='employee', lazy=True)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
+    employee = db.relationship('Employee', backref='requests', lazy=True)
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
     #                                      backref=db.backref('buses_associated', lazy='dynamic'))
@@ -32,7 +32,7 @@ class Request(db.Model, IDto):
         return {
             "id": self.id,
             "request_type": self.request_type,
-            "employee": self.employee.login_of_employee if self.employee_id is not None else "",
+            "employee_info": f"{self.employee.phone_number} {self.employee.last_name}" if self.employee_id is not None else "",
         }
 
     @staticmethod

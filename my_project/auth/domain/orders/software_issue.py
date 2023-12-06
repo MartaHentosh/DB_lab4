@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Any
 
-from PYTHON_LESSONS.t08_flask_mysql.app.my_project import db
-from PYTHON_LESSONS.t08_flask_mysql.app.my_project.auth.domain.i_dto import IDto
+from my_project import db
+from my_project.auth.domain.i_dto import IDto
 
 
 class SoftwareIssue(db.Model, IDto):
@@ -15,11 +15,11 @@ class SoftwareIssue(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description_issue: str = db.Column(db.String(100))
 
-    company_software_id = db.Column(db.Integer, db.ForeignKey('company_software.company_software_id'), nullable=False)
-    company_software = db.relationship('Company_software', backref='company_software', lazy=True)
+    company_software_id = db.Column(db.Integer, db.ForeignKey('company_software.id'), nullable=False)
+    company_software = db.relationship('CompanySoftware', backref='company_software', lazy=True)
 
-    location_id = db.Column(db.Integer, db.ForeignKey('location.location_id'), nullable=False)
-    location = db.relationship('location', backref='location', lazy=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
+    location = db.relationship('Location', backref='location', lazy=True)
 
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
@@ -36,8 +36,8 @@ class SoftwareIssue(db.Model, IDto):
         return {
             "id": self.id,
             "description_issue": self.description_issue,
-            "company_software": self.company_software.login_of_company_software if self.company_software_id is not None else "",
-            "location": self.location.login_of_location if self.location_id is not None else "",
+            "company_software": self.company_software.software_type if self.company_software_id is not None else "",
+            "location": self.location.department if self.location_id is not None else "",
         }
 
     @staticmethod

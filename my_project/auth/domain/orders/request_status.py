@@ -15,8 +15,8 @@ class RequestStatus(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     request_status: str = db.Column(db.String(45))
 
-    request_id = db.Column(db.Integer, db.ForeignKey('request.request_id'), nullable=False)
-    request = db.relationship('Request', backref='request', lazy=True)
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'), nullable=False)
+    request = db.relationship('Request', backref='request_statuses', lazy=True)
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
     #                                      backref=db.backref('buses_associated', lazy='dynamic'))
@@ -32,7 +32,7 @@ class RequestStatus(db.Model, IDto):
         return {
             "id": self.id,
             "request_status": self.request_status,
-            "request": self.request.login_of_request if self.request_id is not None else "",
+            "request": self.request.id if self.request_id is not None else "",
         }
 
     @staticmethod

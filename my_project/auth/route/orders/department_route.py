@@ -33,6 +33,7 @@ def get_all_clients() -> Response:
 #     """
 #     return make_response(jsonify(bus_controller.find_routes(bus_id)), HTTPStatus.OK)
 
+
 @department_bp.post('')
 def create_client() -> Response:
     """

@@ -2,7 +2,7 @@ from typing import List
 
 from my_project.auth.dao.general_dao import GeneralDAO
 
-from my_project.auth.domain.orders.department import Request
+from my_project.auth.domain.orders.request import Request
 
 
 class RequestDAO(GeneralDAO):

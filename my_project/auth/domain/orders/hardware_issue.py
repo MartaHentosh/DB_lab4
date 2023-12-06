@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Any
 
-from .my_project import db
-from .my_project.auth.domain.i_dto import IDto
+from my_project import db
+from my_project.auth.domain.i_dto import IDto
 
 
 class HardwareIssue(db.Model, IDto):
@@ -16,11 +16,11 @@ class HardwareIssue(db.Model, IDto):
     decription: str = db.Column(db.String(100))
     request_date = db.Column(db.Date)
 
-    company_hardware_id = db.Column(db.Integer, db.ForeignKey('company_hardware.company_hardware_id'), nullable=False)
-    company_hardware = db.relationship('Company_hardware', backref='company_hardware', lazy=True)
+    company_hardware_id = db.Column(db.Integer, db.ForeignKey('company_hardware.id'), nullable=False)
+    company_hardware = db.relationship('CompanyHardware', backref='company_hardware', lazy=True)
 
-    location_id = db.Column(db.Integer, db.ForeignKey('location.location_id'), nullable=False)
-    location = db.relationship('Location', backref='location', lazy=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
+    location = db.relationship('Location', backref='software_issue_location', lazy=True)
 
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
@@ -38,8 +38,8 @@ class HardwareIssue(db.Model, IDto):
             "id": self.id,
             "decription": self.decription,
             "request_date": self.request_date,
-            "company_hardware": self.company_hardware.login_of_company_hardware if self.company_hardware_id is not None else "",
-            "location": self.location.login_of_location if self.location_id is not None else "",
+            "company_hardware": self.company_hardware.hardware_type if self.company_hardware_id is not None else "",
+            "location": self.location.department if self.location_id is not None else "",
         }
 
     @staticmethod

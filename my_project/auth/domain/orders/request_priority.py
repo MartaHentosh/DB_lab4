@@ -15,8 +15,8 @@ class RequestPriority(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     priority: int = db.Column(db.Integer)
 
-    request_id = db.Column(db.Integer, db.ForeignKey('request.request_id'), nullable=False)
-    request = db.relationship('Request', backref='request', lazy=True)
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'), nullable=False)
+    request = db.relationship('Request', backref='requests', lazy=True)
 
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
@@ -33,7 +33,7 @@ class RequestPriority(db.Model, IDto):
         return {
             "id": self.id,
             "priority": self.priority,
-            "request": self.request.login_of_request if self.request_id is not None else "",
+            "request": self.request.id if self.request_id is not None else "",
         }
 
     @staticmethod

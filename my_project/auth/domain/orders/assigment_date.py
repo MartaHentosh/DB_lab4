@@ -15,10 +15,10 @@ class AssigmentDate(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date_time = db.Column(db.Date)
 
-    request_id = db.Column(db.Integer, db.ForeignKey('request.request_id'), nullable=False)
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'), nullable=False)
     request = db.relationship('Request', backref='request', lazy=True)
 
-    employee_id = db.Column(db.Integer, db.ForeignKey('employee.employee_id'), nullable=False)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
     employee = db.relationship('Employee', backref='employee', lazy=True)
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
@@ -35,8 +35,8 @@ class AssigmentDate(db.Model, IDto):
         return {
             "id": self.id,
             "date_time": self.date_time,
-            "request": self.request.login_of_request if self.request_id is not None else "",
-            "employee": self.employee.login_of_employee if self.employee_id is not None else "",
+            "request_type": self.request.request_type if self.request_id is not None else "",
+            "employee_name": f"{self.employee.first_name} {self.employee.last_name}" if self.employee_id is not None else "",
         }
 
     @staticmethod

@@ -2,7 +2,7 @@ from typing import List
 
 from my_project.auth.dao.general_dao import GeneralDAO
 
-from my_project.auth.domain.orders.department import SoftwareIssue
+from my_project.auth.domain.orders.software_issue import SoftwareIssue
 
 
 class SoftwareIssueDAO(GeneralDAO):

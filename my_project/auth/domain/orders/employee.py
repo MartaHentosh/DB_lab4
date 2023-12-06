@@ -18,7 +18,7 @@ class Employee(db.Model, IDto):
     email: str = db.Column(db.String(45))
     phone_number: str = db.Column(db.String(15))
 
-    department_id = db.Column(db.Integer, db.ForeignKey('department.department_id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
     department = db.relationship('Department', backref='department', lazy=True)
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
@@ -38,7 +38,7 @@ class Employee(db.Model, IDto):
             "last_name": self.last_name,
             "email": self.email,
             "phone_number": self.phone_number,
-            "department": self.department.login_of_department if self.department_id is not None else "",
+            "name_dapartment": self.department.name_dapartment if self.department_id is not None else "",
         }
 
     @staticmethod

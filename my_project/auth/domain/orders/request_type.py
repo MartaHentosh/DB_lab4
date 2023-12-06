@@ -14,14 +14,14 @@ class RequestType(db.Model, IDto):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    request_id = db.Column(db.Integer, db.ForeignKey('request.request_id'), nullable=False)
-    request = db.relationship('Request', backref='request', lazy=True)
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'), nullable=False)
+    request = db.relationship('Request', backref='request_types', lazy=True)
 
-    hardware_issue_id = db.Column(db.Integer, db.ForeignKey('hardware_issue.hardware_issue_id'), nullable=False)
-    hardware_issue = db.relationship('Hardware_issue', backref='hardware_issue', lazy=True)
+    hardware_issue_id = db.Column(db.Integer, db.ForeignKey('hardware_issue.id'), nullable=False)
+    hardware_issue = db.relationship('HardwareIssue', backref='hardware_issue', lazy=True)
 
-    software_issue_id = db.Column(db.Integer, db.ForeignKey('software_issue.software_issue_id'), nullable=False)
-    software_issue = db.relationship('Software_issue', backref='software_issue', lazy=True)
+    software_issue_id = db.Column(db.Integer, db.ForeignKey('software_issue.id'), nullable=False)
+    software_issue = db.relationship('SoftwareIssue', backref='software_issue', lazy=True)
     # Many-to-Many relationship with Driver
     # drivers = db.relationship('Driver', secondary=bus_driver,
     #                                      backref=db.backref('buses_associated', lazy='dynamic'))
@@ -36,9 +36,9 @@ class RequestType(db.Model, IDto):
         """
         return {
             "id": self.id,
-            "request": self.request.login_of_request if self.request_id is not None else "",
-            "hardware_issue": self.hardware_issue.login_of_hardware_issue if self.hardware_issue_id is not None else "",
-            "software_issue": self.software_issue.login_of_software_issue if self.software_issue_id is not None else "",
+            "request": self.request_id,
+            "hardware_issue_description": f"{self.hardware_issue.decription}" if self.hardware_issue_id is not None else "",
+            "software_issue_description": f"{self.software_issue.description_issue}" if self.software_issue_id is not None else "",
         }
 
     @staticmethod
