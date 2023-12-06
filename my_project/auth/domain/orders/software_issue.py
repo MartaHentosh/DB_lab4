@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Any
 
-from my_project import db
-from my_project.auth.domain.i_dto import IDto
+from PYTHON_LESSONS.t08_flask_mysql.app.my_project import db
+from PYTHON_LESSONS.t08_flask_mysql.app.my_project.auth.domain.i_dto import IDto
 
 
 class SoftwareIssue(db.Model, IDto):

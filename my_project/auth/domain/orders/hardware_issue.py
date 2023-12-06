@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Any
 
-from my_project import db
-from my_project.auth.domain.i_dto import IDto
+from .my_project import db
+from .my_project.auth.domain.i_dto import IDto
 
 
 class HardwareIssue(db.Model, IDto):
