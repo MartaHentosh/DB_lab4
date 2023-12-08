@@ -9,3 +9,6 @@ class DepartmentController(GeneralController):
     Realisation of Client controller.
     """
     _service = department_service
+
+    def find_employees(self, department_id: int):
+        return self._service.find_employees(department_id)

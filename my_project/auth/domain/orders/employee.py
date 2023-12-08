@@ -5,6 +5,8 @@ from typing import Dict, Any
 from my_project import db
 from my_project.auth.domain.i_dto import IDto
 
+from my_project.auth.domain.orders.department import employee_department
+
 
 class Employee(db.Model, IDto):
     """
@@ -18,11 +20,8 @@ class Employee(db.Model, IDto):
     email: str = db.Column(db.String(45))
     phone_number: str = db.Column(db.String(15))
 
-    department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
-    department = db.relationship('Department', backref='department', lazy=True)
-    # Many-to-Many relationship with Driver
-    # drivers = db.relationship('Driver', secondary=bus_driver,
-    #                                      backref=db.backref('buses_associated', lazy='dynamic'))
+    # Many-to-Many relationship with Department
+    departments = db.relationship('Department', secondary=employee_department)
 
     def __repr__(self) -> str:
         return f"Employee({self.id}, {self.first_name}, {self.last_name}, {self.email})"
@@ -38,7 +37,6 @@ class Employee(db.Model, IDto):
             "last_name": self.last_name,
             "email": self.email,
             "phone_number": self.phone_number,
-            "name_dapartment": self.department.name_dapartment if self.department_id is not None else "",
         }
 
     @staticmethod
@@ -53,6 +51,5 @@ class Employee(db.Model, IDto):
             last_name=dto_dict.get("last_name"),
             email=dto_dict.get("email"),
             phone_number=dto_dict.get("phone_number"),
-            department_id=dto_dict.get("department_id"),
         )
         return obj

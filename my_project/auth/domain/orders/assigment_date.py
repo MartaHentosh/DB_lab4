@@ -47,7 +47,7 @@ class AssigmentDate(db.Model, IDto):
         :return: Domain object
         """
         obj = AssigmentDate(
-            date_time=dto_dict.get("request_type"),
+            date_time=dto_dict.get("date_time"),
             request_id=dto_dict.get("request_id"),
             employee_id=dto_dict.get("employee_id"),
         )

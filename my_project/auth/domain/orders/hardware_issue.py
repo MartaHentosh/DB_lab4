@@ -20,11 +20,7 @@ class HardwareIssue(db.Model, IDto):
     company_hardware = db.relationship('CompanyHardware', backref='company_hardware', lazy=True)
 
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
-    location = db.relationship('Location', backref='software_issue_location', lazy=True)
-
-    # Many-to-Many relationship with Driver
-    # drivers = db.relationship('Driver', secondary=bus_driver,
-    #                                      backref=db.backref('buses_associated', lazy='dynamic'))
+    location = db.relationship('Location', backref='locations', lazy=True)
 
     def __repr__(self) -> str:
         return f"HardwareIssue({self.id}, {self.decription}, {self.request_date})"
@@ -52,7 +48,7 @@ class HardwareIssue(db.Model, IDto):
         obj = HardwareIssue(
             decription=dto_dict.get("decription"),
             request_date=dto_dict.get("request_date"),
-            company_hardware=dto_dict.get("company_hardware"),
-            location=dto_dict.get("location"),
+            company_hardware_id=dto_dict.get("company_hardware_id"),
+            location_id=dto_dict.get("location_id"),
         )
         return obj

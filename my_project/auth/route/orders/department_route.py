@@ -17,6 +17,15 @@ def get_all_clients() -> Response:
     """
     return make_response(jsonify(department_controller.find_all()), HTTPStatus.OK)
 
+
+@department_bp.get('/<int:department_id>/employees')
+def get_all_departments_from_employees(department_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(department_controller.find_employees(department_id)), HTTPStatus.OK)
+
 # @department_bp.get('/<int:department_id>/depatments')
 # def get_all_buses_from_drivers(bus_id) -> Response:
 #     """

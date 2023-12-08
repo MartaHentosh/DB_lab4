@@ -42,7 +42,7 @@ class CompanySoftware(db.Model, IDto):
         :return: Domain object
         """
         obj = CompanySoftware(
-            software_type=dto_dict.get("hardware_type"),
+            software_type=dto_dict.get("software_type"),
             software_version=dto_dict.get("software_version"),
         )
         return obj

@@ -17,9 +17,6 @@ class Request(db.Model, IDto):
 
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
     employee = db.relationship('Employee', backref='requests', lazy=True)
-    # Many-to-Many relationship with Driver
-    # drivers = db.relationship('Driver', secondary=bus_driver,
-    #                                      backref=db.backref('buses_associated', lazy='dynamic'))
 
     def __repr__(self) -> str:
         return f"Request({self.id}, {self.request_type})"

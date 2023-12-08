@@ -7,3 +7,6 @@ class EmployeeController(GeneralController):
     Realisation of Client controller.
     """
     _service = employee_service
+
+    def find_departments(self, employee_id: int):
+        return self._service.find_departments(employee_id)

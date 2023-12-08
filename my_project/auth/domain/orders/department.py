@@ -5,6 +5,13 @@ from typing import Dict, Any
 from my_project import db
 from my_project.auth.domain.i_dto import IDto
 
+employee_department = db.Table(
+    'employee_department',
+    db.Column('employee_id', db.Integer, db.ForeignKey('employee.id')),
+    db.Column('department_id', db.Integer, db.ForeignKey('department.id')),
+    extend_existing=True
+)
+
 
 class Department(db.Model, IDto):
     """
@@ -15,9 +22,10 @@ class Department(db.Model, IDto):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name_dapartment: str = db.Column(db.String(45))
 
-    # Many-to-Many relationship with Driver
-    # drivers = db.relationship('Driver', secondary=bus_driver,
-    #                                      backref=db.backref('buses_associated', lazy='dynamic'))
+    # Many-to-Many relationship with Employee
+    employees = db.relationship('Employee', secondary=employee_department, back_populates='departments',
+                                primaryjoin='Department.id == employee_department.c.department_id',
+                                secondaryjoin='Employee.id == employee_department.c.employee_id')
 
     def __repr__(self) -> str:
         return f"Department({self.id}, {self.name_dapartment})"
