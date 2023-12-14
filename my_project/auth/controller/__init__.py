@@ -10,6 +10,7 @@ from .orders.request_priority_controller import RequestPriorityController
 from .orders.request_status_controller import RequestStatusController
 from .orders.request_type_controller import RequestTypeController
 from .orders.software_issue_controller import SoftwareIssueController
+from .orders.company_asset_controller import CompanyAssetController
 
 department_controller = DepartmentController()
 assigment_date_controller = AssigmentDateController()
@@ -23,3 +24,4 @@ request_priority_controller = RequestPriorityController()
 request_status_controller = RequestStatusController()
 request_type_controller = RequestTypeController()
 software_issue_controller = SoftwareIssueController()
+company_asset_controller = CompanyAssetController()

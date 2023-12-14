@@ -23,6 +23,7 @@ def register_routes(app: Flask) -> None:
     from .orders.request_status_route import request_status_bp
     from .orders.request_type_route import request_type_bp
     from .orders.software_issue_route import software_issue_bp
+    from .orders.company_asset_route import company_asset_bp
 
     app.register_blueprint(department_bp)
     app.register_blueprint(assigment_date_bp)
@@ -36,3 +37,4 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(request_status_bp)
     app.register_blueprint(request_type_bp)
     app.register_blueprint(software_issue_bp)
+    app.register_blueprint(company_asset_bp)

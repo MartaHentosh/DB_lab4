@@ -17,22 +17,6 @@ def get_all_clients() -> Response:
     """
     return make_response(jsonify(employee_controller.find_all()), HTTPStatus.OK)
 
-# @department_bp.get('/<int:department_id>/depatments')
-# def get_all_buses_from_drivers(bus_id) -> Response:
-#     """
-#     Gets all objects from table using Service layer.
-#     :return: Response object
-#     """
-#     return make_response(jsonify(bus_controller.find_drivers(bus_id)), HTTPStatus.OK)
-#
-# @department_bp.get('/<int:bus_id>/routes')
-# def get_all_buses_from_routes(bus_id) -> Response:
-#     """
-#     Gets all objects from table using Service layer.
-#     :return: Response object
-#     """
-#     return make_response(jsonify(bus_controller.find_routes(bus_id)), HTTPStatus.OK)
-
 
 @employee_bp.get('/<int:employee_id>/departments')
 def get_all_employees_from_departments(employee_id) -> Response:

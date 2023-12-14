@@ -13,6 +13,6 @@ from my_project.auth.domain.orders.request_priority import RequestPriority
 from my_project.auth.domain.orders.request_status import RequestStatus
 from my_project.auth.domain.orders.request_type import RequestType
 from my_project.auth.domain.orders.software_issue import SoftwareIssue
-
+from my_project.auth.domain.orders.company_asset import CompanyAsset
 
 

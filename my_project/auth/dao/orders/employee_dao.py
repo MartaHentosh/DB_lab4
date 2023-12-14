@@ -20,20 +20,16 @@ class EmployeeDAO(GeneralDAO):
         :param employee_id: ID of the driver
         :return: List of Bus objects associated with the driver
         """
-        # Assuming that you have a session object, replace it with your actual SQLAlchemy session
         session = self.get_session()
 
-        # Query the association table to get the bus IDs associated with the driver
         department_ids = (
             session.query(employee_department.c.department_id)
             .filter(employee_department.c.employee_id == employee_id)
             .all()
         )
 
-        #     # Extract bus IDs from the result
         department_ids = [department_id for (department_id,) in department_ids]
 
-        # Query the Bus table to get the Bus objects associated with the bus IDs
         departments = session.query(Department).filter(Department.id.in_(department_ids)).all()
 
         return [department.put_into_dto() for department in departments]

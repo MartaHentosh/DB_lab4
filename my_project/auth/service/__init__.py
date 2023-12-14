@@ -10,6 +10,7 @@ from .orders.request_priority_service import RequestPriorityService
 from .orders.request_status_service import RequestStatusService
 from .orders.request_type_service import RequestTypeService
 from .orders.software_issue_service import SoftwareIssueService
+from .orders.company_asset_service import CompanyAssetService
 
 department_service = DepartmentService()
 assigment_date_service = AssigmentDateService()
@@ -23,3 +24,4 @@ request_priority_service = RequestPriorityService()
 request_status_service = RequestStatusService()
 request_type_service = RequestTypeService()
 software_issue_service = SoftwareIssueService()
+company_asset_service = CompanyAssetService()

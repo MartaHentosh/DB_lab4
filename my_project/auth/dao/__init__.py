@@ -10,6 +10,7 @@ from .orders.request_priority_dao import RequestPriorityDAO
 from .orders.request_status_dao import RequestStatusDAO
 from .orders.request_type_dao import RequestTypeDAO
 from .orders.software_issue_dao import SoftwareIssueDAO
+from .orders.company_asset_dao import CompanyAssetDAO
 
 department_dao = DepartmentDAO()
 assigment_date_dao = AssigmentDateDAO()
@@ -23,3 +24,4 @@ request_priority_dao = RequestPriorityDAO()
 request_status_dao = RequestStatusDAO()
 request_type_dao = RequestTypeDAO()
 software_issue_dao = SoftwareIssueDAO()
+company_asset_dao = CompanyAssetDAO()
