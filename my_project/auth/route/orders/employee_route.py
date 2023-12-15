@@ -79,3 +79,10 @@ def delete_client(employee_id: int) -> Response:
     """
     employee_controller.delete(employee_id)
     return make_response("Employee deleted", HTTPStatus.OK)
+
+
+@employee_bp.post('/last_name/<string:surname>/name_dapartment/<string:departmentname>')
+def insert_employee_department_dependency(surname, departmentname) -> Response:
+    employee_controller.insert_employee_department_dependency(surname, departmentname)
+    response_data = {'message':'Stores and products names inserted successfully'}
+    return make_response(response_data, HTTPStatus.CREATED)

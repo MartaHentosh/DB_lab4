@@ -10,3 +10,6 @@ class EmployeeController(GeneralController):
 
     def find_departments(self, employee_id: int):
         return self._service.find_departments(employee_id)
+
+    def insert_employee_department_dependency(self, surname, departmentname):
+        return self._service.insert_employee_department_dependency(surname, departmentname)
